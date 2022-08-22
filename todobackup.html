@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video2 - ToDo application</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="h-full grid place-items-center dark:bg-black dark:text-white">
+    <div id="app">
+        <section v-if="incompleteAssignments.length">
+            <h2 class="font-bold mb-2">In Progress</h2>
+            <ul>
+                <li v-for="a in incompleteAssignments" :key=" a.id">
+                    <label>{{a.name}} <input type="checkbox" v-model="a.complete">
+                    </label>
+                </li>
+            </ul>
+        </section>
+        <section class="mt-3" v-if="completedAssignments.length">
+            <h2 class="font-bold mb-2">Completed</h2>
+            <ul>
+                <li v-for="a in completedAssignments" :key="a.id">
+                    <label>{{a.name}} <input type="checkbox" v-model="a.complete">
+                    </label>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <pre>{{assignments}}</pre>
+        </section>
+    </div>
+    <script>
+        let app = {
+            data() {
+                return {
+                    assignments: [
+                        { id: 1, name: 'Finish project', complete: false },
+                        { id: 2, name: 'Read chapter', complete: false },
+                        { id: 3, name: 'Turn in homework', complete: false }]
+                }
+            }, computed: {
+                completedAssignments() {
+                    return this.assignments.filter(x => x.complete);
+                },
+                incompleteAssignments() {
+                    return this.assignments.filter(x => !x.complete);
+                }
+            }
+        };
+        Vue.createApp(app).mount('#app');
+    </script>
+</body>
+
+</html>
