@@ -22,6 +22,11 @@
                 };
             }, mounted() {
                 setTimeout(() => {this.greeting = 'Changed!';}, 3000)
+            },
+            methods: {
+                toggle() {
+                    alert('toggle');
+                }
             }
         }).mount('#app');
 
