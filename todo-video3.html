@@ -12,7 +12,8 @@
 
 <body class="h-full grid place-items-center dark:bg-black dark:text-white">
     <div id="app">
-        <app-button>Test</app-button>
+        <app-button type="primary">Primary</app-button><br /><br />
+        <app-button type="secondary" :processing="true">Secondary</app-button>
     </div>
     <script type="module">
         import App from './js/components/App.js';
